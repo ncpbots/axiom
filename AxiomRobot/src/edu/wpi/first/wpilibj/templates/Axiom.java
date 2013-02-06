@@ -9,6 +9,7 @@ package edu.wpi.first.wpilibj.templates;
 
 
 import edu.wpi.first.wpilibj.SimpleRobot;
+import edu.wpi.first.wpilibj.Watchdog;
 import edu.wpi.first.wpilibj.RobotDrive;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.Timer;
@@ -24,13 +25,16 @@ public class Axiom extends SimpleRobot {
     /**
      * This function is called once each time the robot enters autonomous mode.
      */
-    RobotDrive chassis = new RobotDrive(1,2);
-    Joystick leftJoystick = new Joystick(1);
-    Joystick rightJoystick = new Joystick(2);
-    getWatchdog().setExpiration(0.1);
+    static final int LEFT_MOTOR_PWM = 1;
+    static final int RIGHT_MOTOR_PWM = 2;
+    static final int LEFT_JOYSTICK_USB = 1;
+    static final int RIGHT_JOYSTICK_USB = 2;
+    
+    RobotDrive chassis = new RobotDrive(LEFT_MOTOR_PWM, RIGHT_MOTOR_PWM);
+    Joystick leftJoystick = new Joystick(LEFT_JOYSTICK_USB);
+    Joystick rightJoystick = new Joystick(RIGHT_JOYSTICK_USB);
     
     public void autonomous() {
-        getWatchdog().setEnabled(false);
         while (isAutonomous()) {
                 chassis.drive(0.5, 0.0);
                 Timer.delay(2.0); 
@@ -42,7 +46,6 @@ public class Axiom extends SimpleRobot {
      * This function is called once each time the robot enters operator control.
      */
     public void operatorControl() {
-        getWatchdog().setEnabled(true);
         while (isOperatorControl()) {
             getWatchdog().feed();
             chassis.tankDrive(leftJoystick, rightJoystick);
