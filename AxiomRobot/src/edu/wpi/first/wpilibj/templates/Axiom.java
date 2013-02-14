@@ -25,10 +25,10 @@ public class Axiom extends SimpleRobot {
     /**
      * This function is called once each time the robot enters autonomous mode.
      */
-    static final int LEFT_MOTOR_PWM = 1;
-    static final int RIGHT_MOTOR_PWM = 2;
-    static final int LEFT_JOYSTICK_USB = 1;
-    static final int RIGHT_JOYSTICK_USB = 2;
+    static final int LEFT_MOTOR_PWM = 2;
+    static final int RIGHT_MOTOR_PWM = 1;
+    static final int LEFT_JOYSTICK_USB = 2;
+    static final int RIGHT_JOYSTICK_USB = 1;
     
     RobotDrive chassis = new RobotDrive(LEFT_MOTOR_PWM, RIGHT_MOTOR_PWM);
     Joystick leftJoystick = new Joystick(LEFT_JOYSTICK_USB);
