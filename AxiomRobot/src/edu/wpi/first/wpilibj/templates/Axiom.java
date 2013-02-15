@@ -48,7 +48,8 @@ public class Axiom extends SimpleRobot {
     public void operatorControl() {
         while (isOperatorControl()) {
             getWatchdog().feed();
-            chassis.tankDrive(leftJoystick, rightJoystick);
+            double speed = leftJoystick.getThrottle();
+            chassis.arcadeDrive(speed*leftJoystick.getY(), speed*-leftJoystick.getX());
         }
 
     }
