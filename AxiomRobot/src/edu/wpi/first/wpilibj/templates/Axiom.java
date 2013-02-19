@@ -20,7 +20,7 @@ public class Axiom extends SimpleRobot {
     /**
      * Configuration for motor controllers, joysticks, and other static variables.
      */
-<<<<<<< HEAD
+
     static final int REAR_LEFT_MOTOR_PWM = 4;
     static final int REAR_RIGHT_MOTOR_PWM = 2;
     static final int FRONT_LEFT_MOTOR_PWM = 3;
@@ -31,21 +31,6 @@ public class Axiom extends SimpleRobot {
     RobotDrive chassis = new RobotDrive(FRONT_LEFT_MOTOR_PWM, REAR_LEFT_MOTOR_PWM, FRONT_RIGHT_MOTOR_PWM, FRONT_LEFT_MOTOR_PWM);
     Joystick leftJoystick = new Joystick(LEFT_JOYSTICK_USB);
     Joystick rightJoystick = new Joystick(RIGHT_JOYSTICK_USB);
-=======
-    static final int LEFT_MOTOR_PWM = 2;
-    static final int RIGHT_MOTOR_PWM = 1;
-    static final int LEFT_JOYSTICK_USB = 2;
-    static final int RIGHT_JOYSTICK_USB = 1;
-    RobotDrive chassis;
-    Joystick leftJoystick;
-    Joystick rightJoystick;
-    
-    public Axiom() {
-        chassis = new RobotDrive(LEFT_MOTOR_PWM, RIGHT_MOTOR_PWM);
-        leftJoystick = new Joystick(LEFT_JOYSTICK_USB);
-        rightJoystick = new Joystick(RIGHT_JOYSTICK_USB);
-    }
->>>>>>> b0b132c29c6e9414f8a232e393f9c25a46dab337
     
     /**
      * This function is called once each time the robot enters autonomous mode.
