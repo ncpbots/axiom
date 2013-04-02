@@ -26,6 +26,9 @@ public class Axiom extends SimpleRobot {
     static final int REAR_LEFT_MOTOR_PWM = 2;
     static final int FRONT_RIGHT_MOTOR_PWM = 3;
     static final int REAR_RIGHT_MOTOR_PWM = 4;
+    static final int FAN1_PWM = 5;
+    static final int FAN2_PWM = 6;
+    static final int FAN3_PWM = 7;
     
     //joystick configuration
     static final int LEFT_JOYSTICK_USB = 1;
@@ -35,6 +38,10 @@ public class Axiom extends SimpleRobot {
     Victor rearLeft = new Victor(REAR_LEFT_MOTOR_PWM);
     Jaguar frontRight = new Jaguar(FRONT_RIGHT_MOTOR_PWM);
     Victor rearRight = new Victor(REAR_RIGHT_MOTOR_PWM);
+    
+    Jaguar fan1 = new Jaguar(FAN1_PWM);
+    Jaguar fan2 = new Jaguar(FAN2_PWM);
+    Jaguar fan3 = new Jaguar(FAN3_PWM);
     
     RobotDrive chassis = new RobotDrive(frontLeft, rearLeft, frontRight, rearRight);
     Joystick leftJoystick = new Joystick(LEFT_JOYSTICK_USB);
@@ -50,10 +57,10 @@ public class Axiom extends SimpleRobot {
         chassis.drive(0.0, 0.0); //stop
         */
         while(isAutonomous()) {
-            frontLeft.set(0.2);
+            /*frontLeft.set(0.2);
             frontRight.set(-0.2);
             rearLeft.set(0.2);
-            rearRight.set(-0.2);
+            rearRight.set(-0.2);*/
         }
     }
 
@@ -61,6 +68,7 @@ public class Axiom extends SimpleRobot {
      * This function is called once each time the robot enters operator control.
      */
     public void operatorControl() {
+        boolean fansOn = false;
         while (isOperatorControl()) {
             getWatchdog().feed();
             double speed = -((leftJoystick.getZ()-1)/2);
@@ -69,6 +77,18 @@ public class Axiom extends SimpleRobot {
             frontRight.set(rightJoystick.getY());
             rearLeft.set(-leftJoystick.getY());
             rearRight.set(rightJoystick.getY());*/
+            if (leftJoystick.getRawButton(1)) {
+                if (fansOn) {
+                    fan1.set(1.0);
+                    fan2.set(1.0);
+                    fan3.set(1.0);
+                } else if (!fansOn) {
+                    fan1.set(0);
+                    fan2.set(0);
+                    fan3.set(0);
+                }
+                fansOn = !fansOn;
+            }
         }
     }
     
