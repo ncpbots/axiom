@@ -68,7 +68,6 @@ public class Axiom extends SimpleRobot {
      * This function is called once each time the robot enters operator control.
      */
     public void operatorControl() {
-        boolean fansOn = false;
         while (isOperatorControl()) {
             getWatchdog().feed();
             double speed = -((leftJoystick.getZ()-1)/2);
@@ -78,17 +77,27 @@ public class Axiom extends SimpleRobot {
             rearLeft.set(-leftJoystick.getY());
             rearRight.set(rightJoystick.getY());*/
             if (leftJoystick.getRawButton(1)) {
-                if (fansOn) {
+                if (fan1.get()==0) {
                     fan1.set(1.0);
                     fan2.set(1.0);
                     fan3.set(1.0);
-                } else if (!fansOn) {
+                } else if (fan1.get()>0) {
                     fan1.set(0);
                     fan2.set(0);
                     fan3.set(0);
                 }
-                fansOn = !fansOn;
             }
+            if (leftJoystick.getRawButton(3)) {
+                fan1.set(0);
+                fan2.set(0);
+                fan3.set(0);
+            }
+            if (fan1.get()>0) {
+                DriverStationLCD.getInstance().println(DriverStationLCD.Line.kUser2, 1, "FANS ON!");
+            } else {
+                DriverStationLCD.getInstance().println(DriverStationLCD.Line.kUser2, 1, "        ");
+            }
+            DriverStationLCD.getInstance().updateLCD();
         }
     }
     
